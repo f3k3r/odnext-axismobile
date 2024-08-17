@@ -1,0 +1,8 @@
+{
+  "appId": "axismobile.service.testingonnboard.system",
+  "appName": "Mobile App",
+  "webDir": "out",
+  "server":{
+    "androidScheme": "https"
+  }
+}
