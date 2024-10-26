@@ -1,0 +1,82 @@
+.formContainer {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 18px 0 10px 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #a61d55;
+  outline: none;
+  background: #efefef;
+}
+
+.inputGroup label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #848484;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.inputGroup input:focus + label,
+.inputGroup input:not(:placeholder-shown) + label {
+  top: -5px;
+  left: 0px;
+  font-size: 12px;
+  color: #a61d55;
+  transform: none;
+  margin:5px;
+}
+
+.button {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #a61d55;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background-color: #800037;
+}
+
+.assistanceLink {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #a61d55;
+  text-decoration: none;
+  font-size: 14px;
+
+}
+
+.assistanceLink:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  color: #795768;
+  background-color: #fee7f1;
+  padding: 10px 0;
+}
+.Centering {
+  text-align: center;
+}

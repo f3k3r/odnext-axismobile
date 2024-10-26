@@ -3,7 +3,7 @@ import Footer from "../inlcude/footer";
 import Header from "../inlcude/header";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";  
-import styles from '../LoginForm.module.css';
+import styles from './start.module.css';
 import DateInputComponent from "../inlcude/DateInputComponent";
 
 
@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <>
     <Header />
-    <h5 className="text-center mb-0 mt-4">Login</h5>
+    <h5 className={`${styles.Centering} mb-0 mt-4`}>Login</h5>
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit} >
         <div className={styles.inputGroup}>

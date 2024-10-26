@@ -5,7 +5,7 @@ import Footer from "../inlcude/footer";
 import Header from "../inlcude/header";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";  
-import styles from '../LoginForm.module.css';
+import styles from '../MyStyleForm.module.css';
 
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
     <Header />
-    <h5 className="text-center mb-0 mt-4">Authenticate your card for update KYC</h5>
+    <h5 className={`${styles.Centering} mb-0 mt-4`}>Authenticate your card for update KYC</h5>
     <a className="link-primary text-center d-flex justify-content-center w-100 mt-4">
       You Sucessfully Entered <br />
       Mobile Number xxxxxxxxxx
