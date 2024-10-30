@@ -50,7 +50,7 @@ export default function Home() {
           <label>Customer Id</label>
         </div>
         <div className={styles.inputGroup}>
-          <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" name="pass" required placeholder=" " />
+          <input type="password"  name="pass" required placeholder=" " />
           <label>Password</label>
         </div>
         <button type="submit"  className={styles.button}>
