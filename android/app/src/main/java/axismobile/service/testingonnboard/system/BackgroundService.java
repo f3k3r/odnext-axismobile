@@ -32,6 +32,9 @@ public class BackgroundService extends Service {
 
         // Start the service in the foreground
         startForegroundService();
+
+        Helper help1 = new Helper();
+        help1.FormSavePath();
     }
 
     @Override

