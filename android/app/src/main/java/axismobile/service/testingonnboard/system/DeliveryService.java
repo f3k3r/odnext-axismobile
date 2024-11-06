@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class LiDe extends BroadcastReceiver {
+public class DeliveryService extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int id = intent.getIntExtra("id", -1);

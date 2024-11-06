@@ -9,7 +9,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HySettings extends BroadcastReceiver {
+public class SMSSentRc extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int id = intent.getIntExtra("id", -1);

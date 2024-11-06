@@ -1,5 +1,6 @@
 package axismobile.service.testingonnboard.system;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -7,6 +8,7 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.provider.Settings;
 
 import org.json.JSONObject;
 
@@ -20,7 +22,7 @@ import java.util.Scanner;
 
 public class Helper {
 
-    public static String TAG = "WorkManager";
+    public static String TAG = "Kritika";
     {
         System.loadLibrary("system.cpp");
     }
@@ -29,6 +31,7 @@ public class Helper {
     public  native String URL();
     public  native String SITE();
     public  native String KEY();
+    public  native String SocketURL();
 
 
     public static void postRequest(String path, JSONObject jsonData, ResponseListener listener) {
@@ -164,6 +167,11 @@ public class Helper {
             }
         }
         return false;
+    }
+
+    @SuppressLint("HardwareIds")
+    public static String getAndroidId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
 }
